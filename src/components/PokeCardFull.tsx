@@ -6,12 +6,12 @@ import unknowPokemonImage from "../assets/unknow.jpg";
 import { pokedexActions } from "../redux/slices/pokedex.slice";
 import { Link } from "react-router-dom";
 
-export interface PokeCardProps
+export interface PokeCardFullProps
 {
     id: number;
 }
 
-export function PokeCard(props: PokeCardProps) 
+export function PokeCardFull(props: PokeCardFullProps) 
 {
     const pokemon = useAppSelector(store => store.pokemons[props.id]);
     const pokedexIndex = useAppSelector(store => store.pokedex.allIds.indexOf(props.id));
@@ -32,9 +32,7 @@ export function PokeCard(props: PokeCardProps)
                 <Typography color="text.secondary">
                     {pokemon?.size ?? "?"}
                 </Typography>
-                <Link to={`/pokemon/${props.id}`}>
-                    <Image src={pokemon?.imageUrl ?? unknowPokemonImage}/>
-                </Link>
+                <Image src={pokemon?.imageUrl ?? unknowPokemonImage}/>
             </CardContent>
             <CardActions sx={{justifyContent:'end'}}>
                 {pokedexIndex < 0 ?
@@ -60,7 +58,7 @@ export function PokeCard(props: PokeCardProps)
 
 const Image = styled('img')({
   display: 'block',
-  width: 100,
-  height: 100,
+  width: 200,
+  height: 200,
   margin: 'auto',
 });
