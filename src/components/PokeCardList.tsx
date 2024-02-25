@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Grid, Pagination } from "@mui/material";
 import { PokemonPagedList } from "../models/pokemon.model";
 import { PokeCard } from "./PokeCard";
 
@@ -11,6 +11,11 @@ export interface PokeCardListProps
 
 export function PokeCardList(props: PokeCardListProps)
 {
+    const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => 
+    {
+        props.onPageChange(value);
+    };
+
     return (
         <>
             <Grid container spacing={2} justifyContent='center' padding={2}>
@@ -21,8 +26,17 @@ export function PokeCardList(props: PokeCardListProps)
                 ))}
             </Grid>
 
-            <Button onClick={() => props.onPageChange(props.pagination.page - 1)}>Prev</Button>
-            <Button onClick={() => props.onPageChange(props.pagination.page + 1)}>Next</Button>
+            <Pagination 
+                showFirstButton 
+                size="large"
+                count={props.pagination.total} 
+                page={props.pagination.page}
+                onChange={handlePageChange}
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                }}
+            />
         </>
     );
 }

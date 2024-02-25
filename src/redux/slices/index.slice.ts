@@ -15,7 +15,7 @@ const initialState : PokemonPagedList = {
     ids: [],
     total: 0,
     page: 1,
-    pageSize: 20
+    pageSize: 15
 }
 
 const indexSlice = createSlice({

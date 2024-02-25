@@ -11,7 +11,7 @@ export const HomePage = () =>
     useEffect(() =>
     {
         if (indexState.total === 0)
-            dispatch(changeIndexList({page: 1, pageSize: 20}));
+            dispatch(changeIndexList({page: 1, pageSize: indexState.pageSize}));
     }, []);
     
     return (
