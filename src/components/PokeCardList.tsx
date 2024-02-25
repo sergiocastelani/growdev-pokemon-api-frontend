@@ -29,7 +29,7 @@ export function PokeCardList(props: PokeCardListProps)
             <Pagination 
                 showFirstButton 
                 size="large"
-                count={props.pagination.total} 
+                count={~~(props.pagination.total / props.pagination.pageSize)} 
                 page={props.pagination.page}
                 onChange={handlePageChange}
                 sx={{

@@ -58,7 +58,7 @@ export function PokeCardFull(props: PokeCardFullProps)
 
 const Image = styled('img')({
   display: 'block',
-  width: 200,
-  height: 200,
+  width: 300,
+  height: 300,
   margin: 'auto',
 });
