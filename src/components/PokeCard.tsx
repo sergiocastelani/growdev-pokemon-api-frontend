@@ -22,7 +22,6 @@ export function PokeCard(props: PokeCardProps)
 
     const pokemon = useMemo(() => 
     {
-        console.log('me apague');
         return pokemons[props.id];
     }, [pokemons[props.id]]);
 

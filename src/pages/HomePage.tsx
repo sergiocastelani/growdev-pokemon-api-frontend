@@ -1,14 +1,26 @@
-import { PokeCard } from "../components/PokeCard";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { changeIndexList } from "../redux/slices/index.slice";
+import { PokeCardList } from "../components/PokeCardList";
 
 export const HomePage = () => 
 {
+    const indexState = useAppSelector(store => store.index);
+    const dispatch = useAppDispatch();
+
+    useEffect(() =>
+    {
+        if (indexState.total === 0)
+            dispatch(changeIndexList({page: 1, pageSize: 20}));
+    }, []);
+    
     return (
         <>
-            <PokeCard id={116}/>
-            <PokeCard id={20}/>
-            <PokeCard id={30}/>
-            <PokeCard id={136}/>
-            <PokeCard id={140}/>
+            <PokeCardList 
+                pagination={indexState}
+                onPageChange={page => dispatch(changeIndexList({page, pageSize: indexState.pageSize}))}
+                onPageSizeChange={pageSize => dispatch(changeIndexList({page: 1, pageSize}))}
+            />
         </>
     );
 };
