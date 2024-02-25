@@ -11,19 +11,14 @@ export interface PokeCardProps
 
 export function PokeCard(props: PokeCardProps) 
 {
-    const pokemons = useAppSelector(store => store.pokemons);
+    const pokemon = useAppSelector(store => store.pokemons[props.id]);
     const dispatch = useAppDispatch();
 
     useEffect(() => 
     {
-        if (! pokemons[props.id])
+        if (! pokemon)
             dispatch(loadPokemon(props.id));
     }, [props.id]);
-
-    const pokemon = useMemo(() => 
-    {
-        return pokemons[props.id];
-    }, [pokemons[props.id]]);
 
     return (
         <Card variant="outlined">
