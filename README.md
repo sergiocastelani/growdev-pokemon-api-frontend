@@ -1,0 +1,1 @@
+Frontend project integrating with official Pokemon API
