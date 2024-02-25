@@ -1,1 +1,3 @@
-Frontend project integrating with official Pokemon API
+Frontend project for third-party Pokemon API.
+
+Focused on the usage of Redux and Async Thunk.
