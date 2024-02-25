@@ -1,8 +1,9 @@
 import { Button, Card, CardActions, CardContent, Typography, styled } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { loadPokemon } from "../redux/slices/pokemons.slice";
 import unknowPokemonImage from "../assets/unknow.jpg";
+import { pokedexActions } from "../redux/slices/pokedex.slice";
 
 export interface PokeCardProps
 {
@@ -12,6 +13,7 @@ export interface PokeCardProps
 export function PokeCard(props: PokeCardProps) 
 {
     const pokemon = useAppSelector(store => store.pokemons[props.id]);
+    const pokedexIndex = useAppSelector(store => store.pokedex.allIds.indexOf(props.id));
     const dispatch = useAppDispatch();
 
     useEffect(() => 
@@ -32,7 +34,22 @@ export function PokeCard(props: PokeCardProps)
                 <Image src={pokemon?.imageUrl ?? unknowPokemonImage}/>
             </CardContent>
             <CardActions>
-                <Button size="small">Add To Pokedex</Button>
+                {pokedexIndex < 0 ?
+                    <Button 
+                        size="small"
+                        onClick={() => dispatch(pokedexActions.add(props.id))}
+                    >
+                        Add Pokedex
+                    </Button>
+                    :
+                    <Button 
+                        size="small"
+                        color="error"
+                        onClick={() => dispatch(pokedexActions.remove(props.id))}
+                    >
+                        Remove Pokedex
+                    </Button>
+                }
             </CardActions>
         </Card>
     );
