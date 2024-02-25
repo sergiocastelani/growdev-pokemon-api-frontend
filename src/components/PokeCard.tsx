@@ -24,7 +24,7 @@ export function PokeCard(props: PokeCardProps)
 
     return (
         <Card variant="outlined">
-            <CardContent>
+            <CardContent sx={{pb:0}}>
                 <Typography variant="h5" component="div">
                     {pokemon?.name ?? "?"}
                 </Typography>
@@ -33,7 +33,7 @@ export function PokeCard(props: PokeCardProps)
                 </Typography>
                 <Image src={pokemon?.imageUrl ?? unknowPokemonImage}/>
             </CardContent>
-            <CardActions>
+            <CardActions sx={{justifyContent:'end'}}>
                 {pokedexIndex < 0 ?
                     <Button 
                         size="small"
@@ -59,4 +59,5 @@ const Image = styled('img')({
   display: 'block',
   width: 100,
   height: 100,
+  margin: 'auto',
 });
