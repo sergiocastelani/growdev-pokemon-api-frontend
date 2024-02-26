@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { loadPokemon } from "../redux/slices/pokemons.slice";
 import unknowPokemonImage from "../assets/unknow.jpg";
 import { pokedexActions } from "../redux/slices/pokedex.slice";
-import { Link } from "react-router-dom";
 
 export interface PokeCardFullProps
 {
