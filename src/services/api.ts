@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Pokemon, PokemonPagedList } from "../models/pokemon.model";
+import { Pokemon, PokemonPagedList, PokemonStat } from "../models/pokemon.model";
 
 const axiosConnection = axios.create({
     baseURL: "https://pokeapi.co/api/v2/"
@@ -47,10 +47,14 @@ export const api =
         try
         {
             const { data } = await axiosConnection.get(`pokemon/${id}`);
+
+            const stats : PokemonStat[] = data.stats.map((s: any) => ({name: s.stat.name, value: s.base_stat}));
+
             return {
                 id: data.id,
                 name: data.name,
                 imageUrl: data.sprites.other?.['official-artwork']?.front_default ?? data.sprites.front_default,
+                stats,
                 size: 
                     !data.height ? 'Unknow' :
                     data.height < 10 ? "Small" : 

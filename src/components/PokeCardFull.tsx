@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Typography, styled } from "@mui/material";
+import { Button, Card, CardActions, CardContent, Grid, Typography, styled } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useEffect } from "react";
 import { loadPokemon } from "../redux/slices/pokemons.slice";
@@ -31,8 +31,36 @@ export function PokeCardFull(props: PokeCardFullProps)
                 <Typography color="text.secondary">
                     {pokemon?.size ?? "?"}
                 </Typography>
-                <Image src={pokemon?.imageUrl ?? unknowPokemonImage}/>
+
+                <Grid container spacing={2} justifyContent='center'>
+                    <Grid item xs={12} md={4}>
+                        <Image src={pokemon?.imageUrl ?? unknowPokemonImage}/>
+                    </Grid>
+                    <Grid 
+                        item 
+                        xs={3} sm={1}
+                        sx={{display: 'flex', flexDirection:'column', justifyContent:'center'}}
+                    >
+                        {pokemon?.stats.map(stat =>
+                            <Typography variant="h5" align="right"> 
+                                {stat.value}
+                            </Typography>
+                        )}
+                    </Grid>
+                    <Grid 
+                        item 
+                        xs={8} sm={6} md={3}
+                        sx={{display: 'flex', flexDirection:'column', justifyContent:'center'}}
+                    >
+                        {pokemon?.stats.map(stat =>
+                            <Typography variant="h5" align="left"> 
+                                {stat.name} 
+                            </Typography>
+                        )}
+                    </Grid>
+                </Grid>
             </CardContent>
+
             <CardActions sx={{justifyContent:'end'}}>
                 {pokedexIndex < 0 ?
                     <Button 
