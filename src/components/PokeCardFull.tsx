@@ -23,7 +23,7 @@ export function PokeCardFull(props: PokeCardFullProps)
     }, [props.id]);
 
     return (
-        <Card variant="outlined">
+        <Card>
             <CardContent sx={{pb:0}}>
                 <Typography variant="h5" component="div">
                     {pokemon?.name ?? "?"}
@@ -42,7 +42,7 @@ export function PokeCardFull(props: PokeCardFullProps)
                         sx={{display: 'flex', flexDirection:'column', justifyContent:'center'}}
                     >
                         {pokemon?.stats.map(stat =>
-                            <Typography variant="h5" align="right"> 
+                            <Typography key={stat.name} variant="h5" align="right"> 
                                 {stat.value}
                             </Typography>
                         )}
@@ -53,7 +53,7 @@ export function PokeCardFull(props: PokeCardFullProps)
                         sx={{display: 'flex', flexDirection:'column', justifyContent:'center'}}
                     >
                         {pokemon?.stats.map(stat =>
-                            <Typography variant="h5" align="left"> 
+                            <Typography key={stat.name} variant="h5" align="left"> 
                                 {stat.name} 
                             </Typography>
                         )}
@@ -61,7 +61,7 @@ export function PokeCardFull(props: PokeCardFullProps)
                 </Grid>
             </CardContent>
 
-            <CardActions sx={{justifyContent:'end'}}>
+            <CardActions sx={{justifyContent:'end'}}> 
                 {pokedexIndex < 0 ?
                     <Button 
                         size="small"
