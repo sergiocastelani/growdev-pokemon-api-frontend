@@ -18,9 +18,9 @@ export const api =
             const idRegex = /\/(\d+)\//g;
             const ids : number[] = data.results.map((entry: any) => 
             {
-                const result = (idRegex.exec(entry.url) || [0, 0]);
+                const result = (idRegex.exec(entry.url) || ['0', '0']);
                 idRegex.lastIndex = 0;
-                return result[1];
+                return parseInt(result[1]);
             });
 
             return {

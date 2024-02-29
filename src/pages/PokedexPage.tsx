@@ -4,7 +4,7 @@ import { pokedexActions } from "../redux/slices/pokedex.slice";
 
 export const PokedexPage = () => 
 {
-    const pokedex = useAppSelector(store => store.pokedex);
+    const pokedex = useAppSelector(store => store.pokedex.pagination);
     const dispatch = useAppDispatch();
 
     return (
